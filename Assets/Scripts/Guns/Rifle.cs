@@ -13,6 +13,9 @@ public class Rifle : MonoBehaviour, IWeapInfo
     public float timer = 0.7f;
     private float Rtimer;
 
+    [Header("Damage It Will Deal")]
+    public float Damage = 10;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +29,8 @@ public class Rifle : MonoBehaviour, IWeapInfo
     {
         if (Input.GetMouseButton(0) && !HasShot)
         {
-            Instantiate(Resources.Load("BulletHitBox", typeof(GameObject)), this.transform.position, this.transform.rotation);
+            GameObject Bullet = Instantiate(Resources.Load("BulletHitBox", typeof(GameObject)), this.transform.position, this.transform.rotation) as GameObject;
+            Bullet.GetComponent<IBullet>().SetDamage(Damage);
             //Instantiate(Bullet, this.transform.position, this.transform.rotation);
             Ammo--;
             HasShot = true;
@@ -49,5 +53,20 @@ public class Rifle : MonoBehaviour, IWeapInfo
     public void Reload()
     {
         Ammo = Mag;
+    }
+
+    public string GetWeapType()
+    {
+        return "Rifle";
+    }
+
+    public int GetAmmo()
+    {
+        return Ammo;
+    }
+
+    public int GetMag()
+    {
+        return Mag;
     }
 }
