@@ -2,18 +2,28 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
-    [SerializeField] private Light sun;
+    private GameObject sun;
     [SerializeField] private float fullDayDurationInSeconds = 120;
     private float timeInDayRemaining;
     private GameObject[] lights;
     private bool isDay = true;
+    private int nightCount = 0;
+    private bool gameEnded = false;
 
     // Start is called before the first frame update
     void Start()
     {
+        // Should get called when a new scene starts
+        startGame();
+    }
+
+    public void startGame()
+    {
+        nightCount = 0;
         lights = GameObject.FindGameObjectsWithTag("LightSource");
         timeInDayRemaining = fullDayDurationInSeconds;
         // Set sun to sunrise exactly
+        sun = GameObject.FindGameObjectWithTag("Sun");
         sun.transform.rotation = Quaternion.Euler(180, 0, -180);
         // Turn lights off
         foreach (GameObject light in lights)
@@ -28,9 +38,10 @@ public class EventManager : MonoBehaviour
     {
         timeInDayRemaining -= Time.deltaTime;
 
-        if (timeInDayRemaining <= 0.0f)
+        if (timeInDayRemaining <= 0.0f && !gameEnded)
         {
             // One full day is over, sun has risen again reset time in Day Remaining
+            nightCount++;
             timeInDayRemaining = fullDayDurationInSeconds;
             isDay = true;
             // Can reset sun to sunrise exactly to avoid sun moving rotating at different speed and drifting
@@ -71,5 +82,8 @@ public class EventManager : MonoBehaviour
         return isDay;
     }
 
-
+    public int getNightCount()
+    {
+        return nightCount;
+    }
 }
