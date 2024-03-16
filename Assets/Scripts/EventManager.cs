@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour
@@ -9,6 +10,22 @@ public class EventManager : MonoBehaviour
     private bool isDay = true;
     private int nightCount = 0;
     private bool gameEnded = false;
+
+    public static EventManager EventManagerInstance { get; private set; }
+
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (EventManagerInstance != null && EventManagerInstance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            EventManagerInstance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
