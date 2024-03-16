@@ -9,7 +9,7 @@ public abstract class PlayerEnemy: MonoBehaviour, IDamage
     public float MaxHealth = 10;
     public float Health = 0;
 
-    public void DealDamage(float Damage)
+    public virtual void DealDamage(float Damage)
     {
         Health -= Damage;
     }
@@ -24,7 +24,7 @@ public abstract class PlayerEnemy: MonoBehaviour, IDamage
         return MaxHealth;
     }
 
-    public void SetHealth(float hp)
+    public virtual void SetHealth(float hp)
     {
         this.gameObject.tag = "Target";
         MaxHealth = hp;
