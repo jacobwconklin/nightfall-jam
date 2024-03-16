@@ -13,7 +13,7 @@ public class ChargeDisplay : MonoBehaviour
         
     }
     //Total amt of solar charge
-     float charge = 100f;
+    float charge = 100f;
     public TextMeshProUGUI chargeText;
     // Update is called once per frame
     void Update()
@@ -22,14 +22,15 @@ public class ChargeDisplay : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            charge--;
+            spentCharge(5);
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        //Replace this if with when it is daylight;
+        /*if ()
         {
-            charge++;
-        }
+            addCharge(1);
+        }*/
     }
- 
+
     public void spentCharge(float amount)
     {
         if (charge - amount <= 0)
