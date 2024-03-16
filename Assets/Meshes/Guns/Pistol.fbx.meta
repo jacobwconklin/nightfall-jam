@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: 867777e2eeda46a4bbc77f9b17630cd2
+guid: 6149eeca89cc0a84ea3110e2499e382d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MatteBlack
-    second: {fileID: 2100000, guid: 825db85e941a8aa40b789cee56c4a9ef, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: TriggerMat
-    second: {fileID: 2100000, guid: 0e00561cda0fa36418c9f01846fb4625, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -43,9 +33,9 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: GunArmature|PickUp (1)
-      takeName: GunArmature|PickUp
-      internalID: -7932173732518681723
+      name: PistolPickup
+      takeName: PistolPickup
+      internalID: 4378282092032139825
       firstFrame: 0
       lastFrame: 84
       wrapMode: 0
@@ -72,9 +62,38 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: GunArmature|Base
-      takeName: GunArmature|Base
-      internalID: 3407079778936478139
+      name: PistolShoot
+      takeName: PistolShoot
+      internalID: 2409975013183413432
+      firstFrame: 0
+      lastFrame: 6
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Base
+      takeName: Base
+      internalID: 7930566718376146537
       firstFrame: 0
       lastFrame: 1
       wrapMode: 0
@@ -101,69 +120,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: GunArmature|PickUp
-      takeName: GunArmature|PickUp
-      internalID: -3556991547440299205
+      name: Pistol|Reload
+      takeName: Pistol|Reload
+      internalID: 4842100275923014631
       firstFrame: 0
-      lastFrame: 84
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: GunArmature|Reloading
-      takeName: GunArmature|Reloading
-      internalID: 1687204436087666354
-      firstFrame: 0
-      lastFrame: 60
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: GunArmature|Shoot
-      takeName: GunArmature|Shoot
-      internalID: -419533343563120541
-      firstFrame: 0
-      lastFrame: 6
+      lastFrame: 73
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
