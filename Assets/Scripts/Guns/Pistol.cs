@@ -6,6 +6,7 @@ using UnityEngine;
 //Bullet = Instantiate(Resources.Load("Bullet", typeof(GameObject))) as GameObject;
 public class Pistol : MonoBehaviour, IWeapInfo
 {
+    private Animator animator;
 
     [Header("Ammo and the Max")]
     public int Mag = 16;
@@ -23,19 +24,23 @@ public class Pistol : MonoBehaviour, IWeapInfo
     {
         Ammo = Mag;
         Rtimer = timer;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     private bool HasShot = false;
     void Update()
     { 
-        if(Input.GetMouseButtonDown(0) && !HasShot && Ammo <= 0)
+        if(Input.GetMouseButtonDown(0) && !HasShot && Ammo > 0)
         {
+            Debug.Log("Shoot");
             GameObject Bullet = Instantiate(Resources.Load("BulletHitBox", typeof(GameObject)), this.transform.position, this.transform.rotation) as GameObject;
             Bullet.GetComponent<IBullet>().SetDamage(Damage);
 
             Ammo--;
             HasShot = true;
+
+            animator.SetTrigger("Shooting");
         }
     }
 
@@ -70,5 +75,10 @@ public class Pistol : MonoBehaviour, IWeapInfo
     public int GetMag()
     {
         return Mag;
+    }
+
+    public void runPickupAnimation()
+    {
+        animator.SetTrigger("Pickup");
     }
 }

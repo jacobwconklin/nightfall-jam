@@ -16,6 +16,7 @@ public class PlayerStatus : PlayerEnemy
     {
         eventManager = EventManager.EventManagerInstance;
         charge = 50;
+        chargeDisplay.setCharge(charge);
     }
 
     // Inherits from PlayerEnemy abstract class, handles tracking player's charge and health.
@@ -35,7 +36,7 @@ public class PlayerStatus : PlayerEnemy
     private void spendCharge(float amount)
     {
         charge = charge - amount < 0 ? 0 : charge - amount;
-        chargeDisplay.setCharge(charge);
+        chargeDisplay.setCharge( Mathf.Floor(charge));
     }
 
     // Gain charge overtime
@@ -44,8 +45,8 @@ public class PlayerStatus : PlayerEnemy
         if (eventManager.IsDay() && !inShadow)
         {
             // Regain charge
-            charge = charge + 1 * Time.deltaTime > maxCharge ? maxCharge : charge + 1 * Time.deltaTime;
-            chargeDisplay.setCharge(charge);
+            charge = charge + chargePerSecond * Time.deltaTime > maxCharge ? maxCharge : charge + chargePerSecond * Time.deltaTime;
+            chargeDisplay.setCharge(Mathf.Floor(charge));
         }
     }
 
@@ -60,6 +61,22 @@ public class PlayerStatus : PlayerEnemy
     private void OnCollisionExit(Collision collision)
     {
         if (collision.collider.CompareTag("Shadow"))
+        {
+            inShadow = false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Shadow"))
+        {
+            inShadow = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Shadow"))
         {
             inShadow = false;
         }

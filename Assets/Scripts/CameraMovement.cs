@@ -24,7 +24,7 @@ public class CameraMovement : MonoBehaviour
         {
             currentRotationX = 360 - currentRotationX;
         }
-        Debug.Log(currentRotationX);
+        // Debug.Log(currentRotationX);
         transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * -1 * player.getMouseSensitivity(), 0f, 0f));
         //if (verticalMovement > 0.1 && currentRotationX > -1 * cameraRotationLimit )
         //{

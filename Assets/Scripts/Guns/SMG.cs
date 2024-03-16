@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SMG : MonoBehaviour, IWeapInfo
 {
+    private Animator animator;
+
     [Header("Ammo and the Max")]
     public int Mag = 60;
     public int Ammo;
@@ -20,6 +22,7 @@ public class SMG : MonoBehaviour, IWeapInfo
     {
         Ammo = Mag;
         Rtimer = timer;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -43,6 +46,8 @@ public class SMG : MonoBehaviour, IWeapInfo
             Bullet.GetComponent<IBullet>().SetDamage(Damage);
             Ammo--;
             HasShot = true;
+
+            animator.SetTrigger("Shooting");
         }
     }
 
@@ -64,5 +69,9 @@ public class SMG : MonoBehaviour, IWeapInfo
     public int GetMag()
     {
         return Mag;
+    }
+    public void runPickupAnimation()
+    {
+        animator.SetTrigger("Pickup");
     }
 }
