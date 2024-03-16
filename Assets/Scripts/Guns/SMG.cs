@@ -12,6 +12,9 @@ public class SMG : MonoBehaviour, IWeapInfo
     public float timer = 0.2f;
     private float Rtimer;
 
+    [Header("Damage It Will Deal")]
+    public float Damage = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +39,8 @@ public class SMG : MonoBehaviour, IWeapInfo
 
         if (Input.GetMouseButton(0) && !HasShot && Ammo != 0)
         {
-            Instantiate(Resources.Load("BulletHitBox", typeof(GameObject)), this.transform.position, this.transform.rotation);
-            //Instantiate(Bullet, this.transform.position, this.transform.rotation);
+            GameObject Bullet = Instantiate(Resources.Load("BulletHitBox", typeof(GameObject)), this.transform.position, this.transform.rotation) as GameObject;
+            Bullet.GetComponent<IBullet>().SetDamage(Damage);
             Ammo--;
             HasShot = true;
         }
@@ -46,5 +49,20 @@ public class SMG : MonoBehaviour, IWeapInfo
     public void Reload()
     {
         Ammo = Mag;
+    }
+
+    public string GetWeapType()
+    {
+        return "SMG";
+    }
+
+    public int GetAmmo()
+    {
+        return Ammo;
+    }
+
+    public int GetMag()
+    {
+        return Mag;
     }
 }
