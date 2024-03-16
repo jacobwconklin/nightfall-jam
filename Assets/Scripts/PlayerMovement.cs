@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        // TODO add Time.deltaTime
+        // TODO may need to add Time.deltaTime
         rigidbody.MoveRotation(rigidbody.rotation * Quaternion.Euler(new Vector3(0, Input.GetAxis("Mouse X") * mouseSensitivity, 0)));
 
     }
@@ -25,5 +25,10 @@ public class PlayerMovement : MonoBehaviour
     {
         transform.position = transform.position + (((transform.forward * Input.GetAxis("Vertical") * moveSpeed) +
             (transform.right * Input.GetAxis("Horizontal") * moveSpeed)) * Time.fixedDeltaTime);
+    }
+
+    public float getMouseSensitivity()
+    {
+        return mouseSensitivity;
     }
 }
