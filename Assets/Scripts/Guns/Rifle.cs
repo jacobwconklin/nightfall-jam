@@ -23,7 +23,6 @@ public class Rifle : MonoBehaviour, IWeapInfo
         Ammo = Mag;
         Rtimer = timer;
         animator = GetComponent<Animator>();
-        animator.SetBool("Shooting", false);
     }
 
     // Update is called once per frame
@@ -38,11 +37,7 @@ public class Rifle : MonoBehaviour, IWeapInfo
             Ammo--;
             HasShot = true;
 
-            animator.SetBool("Shooting", true);
-        }
-        else
-        {
-            animator.SetBool("Shooting", false);
+            animator.SetTrigger("Shooting");
         }
     }
 
