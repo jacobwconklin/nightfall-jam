@@ -25,34 +25,10 @@ public class HealthDisplay : MonoBehaviour
         {
             spenthealth(1);
         }
-
-        /*if (isDay())
-        {
-            addhealth(.06);
-        }*/
     }
 
     public void spenthealth(float amt)
     {
-        if (health - amt <= 0)
-        {
-            health = 0;
-        }
-        else
-        {
-            health -= amt;
-        }
-    }
-
-    public void addhealth(float amt)
-    {
-        if (health + amt >= 5)
-        {
-            health = 5;
-        }
-        else
-        {
-            health += amt;
-        }
+        health = amt;
     }
 }

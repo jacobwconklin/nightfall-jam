@@ -19,39 +19,15 @@ public class ChargeDisplay : MonoBehaviour
     void Update()
     {
         chargeText.text = "Charge : " + charge;
-
+        
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            spentCharge(5);
-        }
-        //Replace this if with when it is daylight;
-        /*if ()
-        {
-            addCharge(1);
-        }*/
-    }
-
-    public void spentCharge(float amount)
-    {
-        if (charge - amount <= 0)
-        {
-            charge = 0;
-        }
-        else
-        {
-            charge -= amount;
+            setCharge(5);
         }
     }
 
-    public void addCharge(float amount)
+    public void setCharge(float amount)
     {
-        if (charge + amount > 100)
-        {
-            charge = 100;
-        }
-        else
-        {
-            charge += amount;
-        }
+        charge = amount;
     }
 }
