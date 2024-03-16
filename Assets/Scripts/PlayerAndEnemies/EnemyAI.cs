@@ -94,6 +94,8 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
         Fight,
         Shoot,
         Dying,
-        Idle
+        Idle,
+        OverHeating,
+        Flee
     }
 }
