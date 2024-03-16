@@ -14,45 +14,45 @@ public class HealthDisplay : MonoBehaviour
     }
 
     //Total amt of health
-    float charge = 100f;
-    public TextMeshProUGUI chargeText;
+    float health = 5f;
+    public TextMeshProUGUI healthText;
     // Update is called once per frame
     void Update()
     {
-        chargeText.text = "Charge: " + charge;
+        healthText.text = "health: " + health;
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            spentCharge(5);
+            spenthealth(1);
         }
 
         /*if (isDay())
         {
-            addCharge(1);
+            addhealth(.06);
         }*/
     }
 
-    public void spentCharge(float amt)
+    public void spenthealth(float amt)
     {
-        if (charge - amt <= 0)
+        if (health - amt <= 0)
         {
-            charge = 0;
+            health = 0;
         }
         else
         {
-            charge -= amt;
+            health -= amt;
         }
     }
 
-    public void addCharge(float amt)
+    public void addhealth(float amt)
     {
-        if (charge + amt >= 100)
+        if (health + amt >= 5)
         {
-            charge = 100;
+            health = 5;
         }
         else
         {
-            charge += amt;
+            health += amt;
         }
     }
 }
