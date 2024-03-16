@@ -43,11 +43,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: GunArmature|PickUp (1)
-      takeName: GunArmature|PickUp
+      name: GunArmature|Action
+      takeName: GunArmature|Action
       internalID: -7932173732518681723
       firstFrame: 0
-      lastFrame: 84
+      lastFrame: 1
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
