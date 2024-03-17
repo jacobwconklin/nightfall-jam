@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class EndGame : MonoBehaviour
 {
+    public GameObject pauseMenu;
+    public GameOver gameOver;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,13 @@ public class EndGame : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("HELP");
-            SceneManager.LoadScene(4);
+            pauseMenu.SetActive(true);
+        }
+        if (GameController.GameControllerInstance.gameEnded)
+        {
+            Debug.Log("QUIT");
+            gameOver.loadMainMenu();
         }
     }
+
 }
