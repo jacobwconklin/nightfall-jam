@@ -22,7 +22,7 @@ public class ChargeDisplay : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            setCharge(5);
+            setCharge(charge);
         }
     }
 
