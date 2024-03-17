@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Speeds")]
-    [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private float sprintSpeed = 1.5f;
+    [SerializeField] private float moveSpeed = 20f;
+    [SerializeField] private float sprintSpeed = 30f;
     [SerializeField] private float sprintChargeDrainPerSecond = 2f;
     [SerializeField] private float mouseSensitivity = 1f;
     private PlayerStatus playerStatus;
@@ -23,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
         // TODO may need to add Time.deltaTime
         rigidbody.MoveRotation(rigidbody.rotation * Quaternion.Euler(new Vector3(0, Input.GetAxis("Mouse X") * mouseSensitivity, 0)));
 
+       
+        // EventManager.EventManagerInstance.
     }
 
     void FixedUpdate()
@@ -30,20 +33,21 @@ public class PlayerMovement : MonoBehaviour
         // Allow player to sprint but cost charge
         float forwardMovement = Input.GetAxis("Vertical");
         float sidewaysMovement = Input.GetAxis("Horizontal");
-        if (Input.GetKeyDown(KeyCode.LeftShift) && (new Vector3(forwardMovement, 0, sidewaysMovement)).magnitude > 0.1) 
+        if (Input.GetKey(KeyCode.LeftShift) && (new Vector3(forwardMovement, 0, sidewaysMovement)).magnitude > 0.1) 
         {
             // Sprint
-            rigidbody.MovePosition(((transform.forward * Input.GetAxis("Vertical") * sprintSpeed) +
-            (transform.right * Input.GetAxis("Horizontal") * moveSpeed)) * Time.fixedDeltaTime);
+            rigidbody.MovePosition(transform.position + (transform.forward * forwardMovement * sprintSpeed * Time.fixedDeltaTime) +
+                (transform.right * sidewaysMovement * sprintSpeed * Time.fixedDeltaTime));
             // Spends charge per second while sprinting
             playerStatus.spendCharge(sprintChargeDrainPerSecond * Time.fixedDeltaTime);
         } else
         {
             // Walk
-            rigidbody.MovePosition(((transform.forward * Input.GetAxis("Vertical") * moveSpeed) +
-                (transform.right * Input.GetAxis("Horizontal") * moveSpeed)) * Time.fixedDeltaTime);
+            rigidbody.MovePosition(transform.position + (transform.forward * forwardMovement * moveSpeed * Time.fixedDeltaTime) + 
+                (transform.right * sidewaysMovement * moveSpeed * Time.fixedDeltaTime));
+
         }
-        
+
     }
 
     public float getMouseSensitivity()

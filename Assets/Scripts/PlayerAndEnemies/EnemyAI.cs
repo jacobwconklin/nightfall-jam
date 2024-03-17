@@ -105,9 +105,22 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
 
     private void Update()
     {
-        if (Dead() )//|| EventManager.EventManagerInstance.IsDay()) //Add to also check if day
+        if (Dead() )
         {
             State = EnemyState.Dying;
+            anim.SetBool("IsOverHeated", true);
+        }
+
+        // overheat in the daytime
+        if (GameController.GameControllerInstance.IsDay())
+        {
+            anim.SetBool("IsOverHeated", true);
+            agent.speed = 0;
+
+        } else
+        {
+            anim.SetBool("IsOverHeated", false);
+            agent.speed = Speed;
         }
 
         if(Player.GetComponent<IDamage>() != null && Player.GetComponent<IDamage>().GetHealth() == 0)

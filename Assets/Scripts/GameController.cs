@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System;
 
-public class EventManager : MonoBehaviour
+public class GameController : MonoBehaviour
 {
     private GameObject sun;
     [SerializeField] private float fullDayDurationInSeconds = 120;
@@ -24,19 +24,19 @@ public class EventManager : MonoBehaviour
     public float healthIncrease = 5f;
     private bool performedSpawn = false;
 
-    public static EventManager EventManagerInstance { get; private set; }
+    public static GameController GameControllerInstance { get; private set; }
 
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
 
-        if (EventManagerInstance != null && EventManagerInstance != this)
+        if (GameControllerInstance != null && GameControllerInstance != this)
         {
             Destroy(this);
         }
         else
         {
-            EventManagerInstance = this;
+            GameControllerInstance = this;
         }
     }
 
@@ -81,11 +81,12 @@ public class EventManager : MonoBehaviour
             // Turn lights off
             foreach (GameObject light in lights)
             {
-                light.GetComponent<Light>().intensity = 0; 
+                light.GetComponent<Light>().intensity = 0;
                 // .SetActive(false);
             }
 
-        } else if (timeInDayRemaining < fullDayDurationInSeconds / 2)
+        }
+        else if (timeInDayRemaining < fullDayDurationInSeconds / 2)
         {
 
             // Sunset is happening, it is no longer daytime
@@ -103,7 +104,7 @@ public class EventManager : MonoBehaviour
                 foreach (EnemySpawn enempySpawn in enemySpawners)
                 {
                     enempySpawn.Setup(Mathf.Floor(baseDamage + nightCount * damageIncrease), 0, baseHealth + nightCount * healthIncrease);
-                    enempySpawn.SpawnEnemies( (int) (baseSpawnPerNodeNumber + nightCount * spawnIncreaseRatePerNode));
+                    enempySpawn.SpawnEnemies((int)(baseSpawnPerNodeNumber + nightCount * spawnIncreaseRatePerNode));
                 }
 
                 performedSpawn = true;
