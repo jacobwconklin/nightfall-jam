@@ -52,6 +52,8 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
         RDPS = DPS;
         agent.speed = Speed;
 
+        Player = GameObject.Find("Player");
+
         SetHealth(100);
         if(Player == null)
         {
@@ -127,6 +129,7 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
                     agent.isStopped = true;
                     anim.ResetTrigger("Moving");
                     anim.SetTrigger("Shoot");
+                    anim.SetBool("IsShooting", true);
                     break;
                 }
 
@@ -197,6 +200,7 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
                         GDPS = RGDPS;
                         anim.ResetTrigger("Shoot");
                         anim.SetTrigger("Moving");
+                        anim.SetBool("IsShooting", false);
                         break;
                     }
                 }
@@ -209,6 +213,7 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
                     Guns[Gun].SetActive(false);
                     anim.ResetTrigger("Shoot");
                     anim.SetBool("HasGun", false);
+                    anim.SetBool("IsShooting", false);
 
                     //AND MAKE IT SPAWN THE GUN HERE
                     break;
