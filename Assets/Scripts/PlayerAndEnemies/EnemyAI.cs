@@ -105,9 +105,8 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
 
     private void Update()
     {
-        if (Dead()) //Add to also check if day
+        if (Dead() )//|| EventManager.EventManagerInstance.IsDay()) //Add to also check if day
         {
-            
             State = EnemyState.Dying;
         }
 
@@ -173,7 +172,7 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
                 {
                     anim.ResetTrigger("Attack");
                     anim.ResetTrigger("Moving");
-                    anim.SetTrigger("OverHeat");
+                    anim.SetBool("IsOverHeated", true);
                     agent.isStopped = true;
                     StopAll = true;
                     StartCoroutine(TrueDeath(5));
@@ -226,10 +225,32 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
                 anim.SetTrigger("Idle");
                 agent.isStopped = true;
                 break;
+
+            case EnemyState.Crawl:
+                //have nothing
+                break;
         }
 
 
         
+    }
+
+    private void OnTriggerEnter(Collider trigger)
+    {
+        Debug.Log("Please please please work");
+        State = EnemyState.Crawl;
+        if(trigger.CompareTag("Hole"))
+        {
+            anim.SetTrigger("Crawl");
+        }
+    }
+
+    private void OnTriggerExit(Collider trigger)
+    {
+        if (trigger.CompareTag("Hole"))
+        {
+            State = EnemyState.Seeking;
+        }
     }
 
     //will return true if player is unobstructed
@@ -312,6 +333,7 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
         Shoot,
         Dying,
         Idle,
+        Crawl,
         Flee //got too complicated
     }
 }
