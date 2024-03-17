@@ -33,14 +33,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift) && (new Vector3(forwardMovement, 0, sidewaysMovement)).magnitude > 0.1) 
         {
             // Sprint
-            transform.position = transform.position + (((transform.forward * Input.GetAxis("Vertical") * sprintSpeed) +
+            rigidbody.MovePosition(((transform.forward * Input.GetAxis("Vertical") * sprintSpeed) +
             (transform.right * Input.GetAxis("Horizontal") * moveSpeed)) * Time.fixedDeltaTime);
             // Spends charge per second while sprinting
             playerStatus.spendCharge(sprintChargeDrainPerSecond * Time.fixedDeltaTime);
         } else
         {
             // Walk
-            transform.position = transform.position + (((transform.forward * Input.GetAxis("Vertical") * moveSpeed) +
+            rigidbody.MovePosition(((transform.forward * Input.GetAxis("Vertical") * moveSpeed) +
                 (transform.right * Input.GetAxis("Horizontal") * moveSpeed)) * Time.fixedDeltaTime);
         }
         
@@ -49,5 +49,6 @@ public class PlayerMovement : MonoBehaviour
     public float getMouseSensitivity()
     {
         return mouseSensitivity;
+
     }
 }

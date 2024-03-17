@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using System;
 
 public class EventManager : MonoBehaviour
 {
@@ -11,6 +12,17 @@ public class EventManager : MonoBehaviour
     private bool isDay = true;
     private int nightCount = 0;
     private bool gameEnded = false;
+    private EnemySpawn[] enemySpawners;
+
+    [Header("Spawn node settings")]
+    public int baseSpawnPerNodeNumber = 4;
+    public int spawnIncreaseRatePerNode = 1;
+    public float baseDamage = 10;
+    public float damageIncrease = 0.5f;
+    public GameObject Gun = null;
+    public float baseHealth = 100;
+    public float healthIncrease = 5f;
+    private bool performedSpawn = false;
 
     public static EventManager EventManagerInstance { get; private set; }
 
@@ -42,13 +54,14 @@ public class EventManager : MonoBehaviour
         timeInDayRemaining = fullDayDurationInSeconds;
         // Set sun to sunrise exactly
         sun = GameObject.FindGameObjectWithTag("Sun");
-        sun.transform.rotation = Quaternion.Euler(180, 0, -180);
+        if (sun != null) sun.transform.rotation = Quaternion.Euler(180, 0, -180);
         // Turn lights off
         foreach (GameObject light in lights)
         {
             light.GetComponent<Light>().intensity = 0;
             // .SetActive(false);
         }
+        enemySpawners = GameObject.FindObjectsOfType<EnemySpawn>();
     }
 
     // Update is called once per frame
@@ -58,12 +71,13 @@ public class EventManager : MonoBehaviour
 
         if (timeInDayRemaining <= 0.0f && !gameEnded)
         {
+            performedSpawn = false;
             // One full day is over, sun has risen again reset time in Day Remaining
             nightCount++;
             timeInDayRemaining = fullDayDurationInSeconds;
             isDay = true;
             // Can reset sun to sunrise exactly to avoid sun moving rotating at different speed and drifting
-            sun.transform.rotation = Quaternion.Euler(180, 0, -180);
+            if (sun != null) sun.transform.rotation = Quaternion.Euler(180, 0, -180);
             // Turn lights off
             foreach (GameObject light in lights)
             {
@@ -73,6 +87,7 @@ public class EventManager : MonoBehaviour
 
         } else if (timeInDayRemaining < fullDayDurationInSeconds / 2)
         {
+
             // Sunset is happening, it is no longer daytime
             isDay = false;
             // Turn lights on
@@ -81,13 +96,27 @@ public class EventManager : MonoBehaviour
                 light.SetActive(true);
                 light.GetComponent<Light>().intensity = 1;
             }
+
+            // spawn enemies on enemy spawn timer + based on nights survived
+            if (!performedSpawn)
+            {
+                foreach (EnemySpawn enempySpawn in enemySpawners)
+                {
+                    enempySpawn.Setup(Mathf.Floor(baseDamage + nightCount * damageIncrease), 0, baseHealth + nightCount * healthIncrease);
+                    enempySpawn.SpawnEnemies( (int) (baseSpawnPerNodeNumber + nightCount * spawnIncreaseRatePerNode));
+                }
+
+                performedSpawn = true;
+
+            }
+
         }
 
 
         // Rotate Sun
         // value = degrees per second
         float rotationDegreesaPerSecond = 360 / fullDayDurationInSeconds;
-        sun.transform.Rotate(rotationDegreesaPerSecond * Time.deltaTime, 0, 0, Space.Self);
+        if (sun != null) sun.transform.Rotate(rotationDegreesaPerSecond * Time.deltaTime, 0, 0, Space.Self);
     }
 
     private void FixedUpdate()

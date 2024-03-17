@@ -2210,7 +2210,7 @@ GameObject:
   - component: {fileID: 657757841}
   m_Layer: 0
   m_Name: SpawnNode (1)
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2366,7 +2366,7 @@ GameObject:
   - component: {fileID: 705507994}
   m_Layer: 0
   m_Name: Directional Light
-  m_TagString: Untagged
+  m_TagString: Sun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2848,6 +2848,58 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0ad842ad3a9a4914ab96307b3fef177b, type: 3}
   m_PrefabInstance: {fileID: 1649441030}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &886359658
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 886359660}
+  - component: {fileID: 886359659}
+  m_Layer: 0
+  m_Name: EventManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &886359659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886359658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7176718009d5044981fb0ef4d31fbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullDayDurationInSeconds: 120
+  baseSpawnPerNodeNumber: 4
+  spawnIncreaseRatePerNode: 1
+  baseDamage: 10
+  damageIncrease: 0.5
+  Gun: {fileID: 0}
+  baseHealth: 100
+  healthIncrease: 5
+--- !u!4 &886359660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886359658}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.4781075, y: 117.182175, z: 112.83146}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &913598611 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0ad842ad3a9a4914ab96307b3fef177b, type: 3}
@@ -5596,7 +5648,7 @@ GameObject:
   - component: {fileID: 1547649295}
   m_Layer: 0
   m_Name: SpawnNode (2)
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6949,7 +7001,7 @@ GameObject:
   - component: {fileID: 1875656723}
   m_Layer: 0
   m_Name: SpawnNode
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7600,7 +7652,7 @@ GameObject:
   - component: {fileID: 1971191001}
   m_Layer: 0
   m_Name: SpawnNode (3)
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8424,3 +8476,4 @@ SceneRoots:
   - {fileID: 657757845}
   - {fileID: 1547649299}
   - {fileID: 1971191005}
+  - {fileID: 886359660}
