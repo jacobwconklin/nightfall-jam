@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
+public class EndGame : MonoBehaviour
 {
-    public void loadMainMenu()
+    // Start is called before the first frame update
+    void Start()
     {
-        Debug.Log("HELP");
-        SceneManager.LoadScene(0);
+        
     }
-
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Debug.Log("HELP");
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(4);
         }
     }
 }
