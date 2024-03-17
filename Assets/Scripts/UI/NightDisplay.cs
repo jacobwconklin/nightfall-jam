@@ -9,7 +9,6 @@ public class NightDisplay : MonoBehaviour
     private float currentNight = 0;
 
     // Start is called before the first frame update
-    float nights = 0f;
     public TextMeshProUGUI nightsText;
     void Start()
     {
