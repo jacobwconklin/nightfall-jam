@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
             // rigidbody.MovePosition(transform.position + (transform.forward * forwardMovement * sprintSpeed * Time.fixedDeltaTime) +
             //     (transform.right * sidewaysMovement * sprintSpeed * Time.fixedDeltaTime));
             // Spends charge per second while sprinting
-            // playerStatus.spendCharge(sprintChargeDrainPerSecond * Time.fixedDeltaTime);
+            playerStatus.spendCharge(sprintChargeDrainPerSecond * Time.fixedDeltaTime);
             Vector3 newMovement = (transform.forward * forwardMovement * sprintSpeed * Time.fixedDeltaTime) +
                  (transform.right * sidewaysMovement * sprintSpeed * Time.fixedDeltaTime);
             rigidbody.AddForce(newMovement, ForceMode.VelocityChange);
