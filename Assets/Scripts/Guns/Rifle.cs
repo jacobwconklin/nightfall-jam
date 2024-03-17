@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Rifle : MonoBehaviour, IWeapInfo
 {
+    private Animator animator;
 
     [Header("Ammo and the Max")]
     public int Mag = 32;
@@ -21,6 +22,7 @@ public class Rifle : MonoBehaviour, IWeapInfo
     {
         Ammo = Mag;
         Rtimer = timer;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -34,6 +36,8 @@ public class Rifle : MonoBehaviour, IWeapInfo
             //Instantiate(Bullet, this.transform.position, this.transform.rotation);
             Ammo--;
             HasShot = true;
+
+            animator.SetTrigger("Shooting");
         }
     }
 
@@ -68,5 +72,10 @@ public class Rifle : MonoBehaviour, IWeapInfo
     public int GetMag()
     {
         return Mag;
+    }
+
+    public void runPickupAnimation()
+    {
+        animator.SetTrigger("Pickup");
     }
 }
