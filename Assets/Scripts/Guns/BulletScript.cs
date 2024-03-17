@@ -37,7 +37,7 @@ public class BulletScript : MonoBehaviour, IBullet
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Target"))
+        if(collision.gameObject.GetComponent<IDamage>() != null)
         {
             collision.gameObject.GetComponent<IDamage>().DealDamage(Damage);
         }
