@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Playground.unity
     guid: 9abcc4ed5304e1b438494ac9da965b2d
   - enabled: 1
+    path: Assets/Scenes/FullTest.unity
+    guid: fc663c5660967034a8d3350da2288993
+  - enabled: 1
+    path: Assets/Scenes/Forest.unity
+    guid: 4eaa84a27b6da90449d4f6358b7edf5d
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
