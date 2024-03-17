@@ -32,8 +32,8 @@ public class PlayerStatus : PlayerEnemy
         if (Health <= 0)
         {
             // GAME OVER TODO 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             GameController.GameControllerInstance.endGame();
         }
     }

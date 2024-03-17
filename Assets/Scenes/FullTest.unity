@@ -9887,15 +9887,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5193779679842531788, guid: db4c0446a8472c945980838c7f182fe0, type: 3}
       propertyPath: m_Height
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5193779679842531788, guid: db4c0446a8472c945980838c7f182fe0, type: 3}
       propertyPath: m_Center.y
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5193779679842531788, guid: db4c0446a8472c945980838c7f182fe0, type: 3}
       propertyPath: m_Center.z
-      value: 0
+      value: -0.25
       objectReference: {fileID: 0}
     - target: {fileID: 5193779679842531788, guid: db4c0446a8472c945980838c7f182fe0, type: 3}
       propertyPath: m_ProvidesContacts
@@ -9904,6 +9904,14 @@ PrefabInstance:
     - target: {fileID: 6688267732914331443, guid: db4c0446a8472c945980838c7f182fe0, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868344991567078044, guid: db4c0446a8472c945980838c7f182fe0, type: 3}
+      propertyPath: Health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868344991567078044, guid: db4c0446a8472c945980838c7f182fe0, type: 3}
+      propertyPath: MaxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7868344991567078044, guid: db4c0446a8472c945980838c7f182fe0, type: 3}
       propertyPath: chargeDisplay
