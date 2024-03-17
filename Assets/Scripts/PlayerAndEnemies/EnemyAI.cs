@@ -271,11 +271,11 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
     {
         
         RaycastHit hit;
-        Vector3 line = ((Player.transform.position + Player.transform.up*2) - (transform.position + transform.up *2));
-        Physics.Raycast(this.transform.position, line, out hit, line.magnitude);
+        Vector3 line = ((Player.transform.position + Player.transform.up) - (transform.position + transform.up));
+        Physics.Raycast(this.transform.position*10, line, out hit, line.magnitude);
 
         
-        if(Physics.Raycast(this.transform.position, line, out hit, line.magnitude))
+        if(Physics.Raycast(this.transform.position + transform.up*3, line, out hit, line.magnitude))
         {
             if(hit.collider.gameObject == Player.gameObject)
             {
@@ -283,8 +283,9 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
             }
         }
 
-        Debug.Log(hit.collider.gameObject.name);
-        Debug.DrawRay(this.transform.position, line, Color.red);
+        //Debug.Log(hit.collider.gameObject.name);
+        //Debug.DrawRay(this.transform.position, line, Color.red);
+
         return false;
     }
 
