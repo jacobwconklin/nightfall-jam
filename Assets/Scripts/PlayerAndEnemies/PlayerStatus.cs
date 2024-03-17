@@ -9,7 +9,7 @@ public class PlayerStatus : PlayerEnemy
     [SerializeField] private float chargePerSecond = 1;
     [SerializeField] private float maxCharge = 100;
     private float charge;
-    private EventManager eventManager;
+    private GameController gameController;
     private bool inShadow = false;
 
     private void Start()
@@ -18,7 +18,7 @@ public class PlayerStatus : PlayerEnemy
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        eventManager = EventManager.EventManagerInstance;
+        gameController = GameController.GameControllerInstance;
         charge = 50;
         chargeDisplay.setCharge(charge);
     }
@@ -34,7 +34,7 @@ public class PlayerStatus : PlayerEnemy
             // GAME OVER TODO 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
-            EventManager.EventManagerInstance.endGame();
+            GameController.GameControllerInstance.endGame();
         }
     }
 
@@ -53,7 +53,7 @@ public class PlayerStatus : PlayerEnemy
     // Gain charge overtime
     public void Update()
     {
-        if (eventManager.IsDay() && !inShadow)
+        if (gameController.IsDay() && !inShadow)
         {
             // Regain charge
             charge = charge + chargePerSecond * Time.deltaTime > maxCharge ? maxCharge : charge + chargePerSecond * Time.deltaTime;

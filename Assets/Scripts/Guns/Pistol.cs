@@ -7,6 +7,7 @@ using UnityEngine;
 public class Pistol : MonoBehaviour, IWeapInfo
 {
     private Animator animator;
+    private PlayerStatus playerStatus;
 
     // disables firing the weapon (happens when picking up a gun / reloading)
     private bool shootingDisabled;
@@ -39,6 +40,7 @@ public class Pistol : MonoBehaviour, IWeapInfo
         Ammo = Mag;
         Rtimer = timer;
         animator = GetComponent<Animator>();
+        playerStatus= GetComponentInParent<PlayerStatus>();
     }
 
     // Update is called once per frame
@@ -49,6 +51,7 @@ public class Pistol : MonoBehaviour, IWeapInfo
         {
             GameObject Bullet = Instantiate(Resources.Load("BulletHitBox", typeof(GameObject)), this.transform.position, this.transform.rotation) as GameObject;
             Bullet.GetComponent<IBullet>().SetDamage(Damage);
+            playerStatus.spendCharge(2f);
             Ammo--;
             HasShot = true;
 
