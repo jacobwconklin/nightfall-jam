@@ -167,9 +167,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8005727612603287678}
   - component: {fileID: 2684303566054634755}
-  - component: {fileID: 3734494084001085993}
   - component: {fileID: 7868344991567078044}
   - component: {fileID: 5193779679842531788}
+  - component: {fileID: 5078861386832514166}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -205,37 +205,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6831b3a06e6e95849907ef22da495b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  sprintSpeed: 1.5
+  moveSpeed: 20
+  sprintSpeed: 30
   sprintChargeDrainPerSecond: 2
   mouseSensitivity: 3
---- !u!54 &3734494084001085993
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6688267732914331443}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!114 &7868344991567078044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,8 +221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ecdfde507fc24e478fa849b26b14730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 10
-  Health: 0
+  MaxHealth: 100
+  Health: 100
   chargeDisplay: {fileID: 0}
   healthDisplay: {fileID: 0}
   chargePerSecond: 1
@@ -276,7 +249,34 @@ CapsuleCollider:
   m_Radius: 1
   m_Height: 6
   m_Direction: 1
-  m_Center: {x: 0, y: 4, z: 0}
+  m_Center: {x: 0, y: 4, z: -0.83}
+--- !u!54 &5078861386832514166
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6688267732914331443}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1001 &3940734434083286037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 532309229640232451, guid: 2f230067b54ce3746afb7117c02c989f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 532309229640232451, guid: 2f230067b54ce3746afb7117c02c989f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -364,11 +364,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7323476023462167943, guid: 466166e65417dd7408a9ff29ad00dbac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.01
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: 7323476023462167943, guid: 466166e65417dd7408a9ff29ad00dbac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 7323476023462167943, guid: 466166e65417dd7408a9ff29ad00dbac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -437,15 +437,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7119084060327871098, guid: 46a8e53aedea21a4b8572d049a3672bc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.06
+      value: -0.064
       objectReference: {fileID: 0}
     - target: {fileID: 7119084060327871098, guid: 46a8e53aedea21a4b8572d049a3672bc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0229
+      value: -0.014
       objectReference: {fileID: 0}
     - target: {fileID: 7119084060327871098, guid: 46a8e53aedea21a4b8572d049a3672bc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 7119084060327871098, guid: 46a8e53aedea21a4b8572d049a3672bc, type: 3}
       propertyPath: m_LocalRotation.w
