@@ -14,6 +14,10 @@ public class PlayerStatus : PlayerEnemy
 
     private void Start()
     {
+        // when player is born freeze mouse to center
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         eventManager = EventManager.EventManagerInstance;
         charge = 50;
         chargeDisplay.setCharge(charge);
@@ -25,6 +29,13 @@ public class PlayerStatus : PlayerEnemy
     {
         Health -= Damage;
         healthDisplay.spenthealth(Health);
+        if (Health <= 0)
+        {
+            // GAME OVER TODO 
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            EventManager.EventManagerInstance.endGame();
+        }
     }
 
     public override void SetHealth(float hp)
@@ -33,7 +44,7 @@ public class PlayerStatus : PlayerEnemy
         healthDisplay.spenthealth(Health);
     }
 
-    private void spendCharge(float amount)
+    public void spendCharge(float amount)
     {
         charge = charge - amount < 0 ? 0 : charge - amount;
         chargeDisplay.setCharge( Mathf.Floor(charge));
@@ -47,22 +58,6 @@ public class PlayerStatus : PlayerEnemy
             // Regain charge
             charge = charge + chargePerSecond * Time.deltaTime > maxCharge ? maxCharge : charge + chargePerSecond * Time.deltaTime;
             chargeDisplay.setCharge(Mathf.Floor(charge));
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("Shadow"))
-        {
-            inShadow = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.collider.CompareTag("Shadow"))
-        {
-            inShadow = false;
         }
     }
 

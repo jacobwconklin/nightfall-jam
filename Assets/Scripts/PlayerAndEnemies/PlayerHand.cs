@@ -9,6 +9,7 @@ public class PlayerHand : MonoBehaviour
     [SerializeField] private Rifle rifle;
     [SerializeField] private SMG smg;
     private IWeapInfo selectedGun;
+    private bool meleeing = false;
 
 
     // Start is called before the first frame update
@@ -66,6 +67,28 @@ public class PlayerHand : MonoBehaviour
         {
             pickUpSmg();
         }
+
+        // Perform Melee on 'E'
+        if (Input.GetKeyDown(KeyCode.E) && !meleeing)
+        {
+            // perform melee by moving hand forward and tilting
+            StartCoroutine("melee");
+        }
+    }
+
+    IEnumerator melee()
+    {
+        meleeing = true;
+        transform.localPosition = transform.localPosition + Vector3.forward;
+        transform.Rotate(new Vector3(1, 0, 0), 90, Space.Self);
+        selectedGun.disableShooting();
+        // wait one second then pull back
+        // TODO can also disable shooting until pulling back
+        yield return new WaitForSeconds(1);
+        selectedGun.enableShooting();
+        transform.localPosition = transform.localPosition - Vector3.forward;
+        transform.Rotate(new Vector3(1, 0, 0), -90, Space.Self);
+        meleeing = false;
     }
 
 }

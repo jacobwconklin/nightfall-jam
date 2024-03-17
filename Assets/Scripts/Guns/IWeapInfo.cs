@@ -10,4 +10,8 @@ public interface IWeapInfo
     int GetAmmo();
 
     int GetMag();
+
+    void disableShooting();
+
+    void enableShooting();
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -92,6 +93,18 @@ public class EventManager : MonoBehaviour
     private void FixedUpdate()
     {
 
+    }
+
+    public void endGame()
+    {
+        StartCoroutine("goToGameOver");
+    }
+
+    IEnumerator goToGameOver()
+    {
+        // takes to game over screen after x seconds
+        yield return new WaitForSeconds(3f);
+        // TODO move to game over screen
     }
 
     public bool IsDay()

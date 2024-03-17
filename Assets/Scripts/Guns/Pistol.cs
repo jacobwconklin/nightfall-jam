@@ -8,6 +8,20 @@ public class Pistol : MonoBehaviour, IWeapInfo
 {
     private Animator animator;
 
+    // disables firing the weapon (happens when picking up a gun / reloading)
+    private bool shootingDisabled;
+
+    public void disableShooting()
+    {
+        shootingDisabled = true;
+    }
+
+    public void enableShooting()
+    {
+        shootingDisabled = false;
+    }
+
+
     [Header("Ammo and the Max")]
     public int Mag = 16;
     public int Ammo;
@@ -30,20 +44,22 @@ public class Pistol : MonoBehaviour, IWeapInfo
     // Update is called once per frame
     private bool HasShot = false;
     void Update()
-    { 
-        if(Input.GetMouseButtonDown(0) && !HasShot && Ammo > 0)
+    {
+        if (Input.GetMouseButton(0) && !HasShot && Ammo != 0 && !shootingDisabled)
         {
-            Debug.Log("Shoot");
             GameObject Bullet = Instantiate(Resources.Load("BulletHitBox", typeof(GameObject)), this.transform.position, this.transform.rotation) as GameObject;
             Bullet.GetComponent<IBullet>().SetDamage(Damage);
-
             Ammo--;
             HasShot = true;
 
-            animator.SetTrigger("Shooting");
+            if (animator != null) animator.SetTrigger("Shooting");
+        }
+        else if (Input.GetMouseButton(0) && !HasShot && Ammo == 0 && !shootingDisabled)
+        {
+            // reload when ammo hits 0
+            Reload();
         }
     }
-
     void FixedUpdate()
     {
         if (HasShot)
@@ -60,6 +76,16 @@ public class Pistol : MonoBehaviour, IWeapInfo
     public void Reload()
     {
         Ammo = Mag;
+        StartCoroutine("performReload");
+    }
+
+    IEnumerator performReload()
+    {
+        disableShooting();
+        if (animator != null) animator.SetTrigger("Reload");
+        // wait one and a half seconds then allow shooting
+        yield return new WaitForSeconds(1.5f);
+        enableShooting();
     }
 
     public string GetWeapType()
@@ -79,6 +105,6 @@ public class Pistol : MonoBehaviour, IWeapInfo
 
     public void runPickupAnimation()
     {
-        animator.SetTrigger("Pickup");
+        if (animator != null) animator.SetTrigger("Pickup");
     }
 }
