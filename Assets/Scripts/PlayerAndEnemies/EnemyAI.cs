@@ -112,16 +112,16 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
         }
 
         // overheat in the daytime
-        if (GameController.GameControllerInstance.IsDay())
-        {
-            anim.SetBool("IsOverHeated", true);
-            agent.speed = 0;
+        //if (GameController.GameControllerInstance.IsDay())
+        //{
+        //    anim.SetBool("IsOverHeated", true);
+        //    agent.speed = 0;
 
-        } else
-        {
-            anim.SetBool("IsOverHeated", false);
-            agent.speed = Speed;
-        }
+        //} else
+        //{
+        //    anim.SetBool("IsOverHeated", false);
+        //    agent.speed = Speed;
+        //}
 
         if(Player.GetComponent<IDamage>() != null && Player.GetComponent<IDamage>().GetHealth() == 0)
         {
@@ -269,12 +269,13 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
     //will return true if player is unobstructed
     private bool CheckForObstruction()
     {
+        
         RaycastHit hit;
-        Vector3 line = Player.transform.position - transform.position;
-        Physics.Raycast(this.transform.position, Player.transform.position - transform.position, out hit, line.magnitude);
+        Vector3 line = ((Player.transform.position + Player.transform.up*2) - (transform.position + transform.up *2));
+        Physics.Raycast(this.transform.position, line, out hit, line.magnitude);
 
         
-        if(Physics.Raycast(this.transform.position, Player.transform.position - transform.position, out hit, line.magnitude))
+        if(Physics.Raycast(this.transform.position, line, out hit, line.magnitude))
         {
             if(hit.collider.gameObject == Player.gameObject)
             {
@@ -282,6 +283,8 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
             }
         }
 
+        Debug.Log(hit.collider.gameObject.name);
+        Debug.DrawRay(this.transform.position, line, Color.red);
         return false;
     }
 
