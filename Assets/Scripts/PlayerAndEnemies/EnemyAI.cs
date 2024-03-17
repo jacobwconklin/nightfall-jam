@@ -68,8 +68,8 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
             Gun--; //because the setup returned a value a little higher. 
             HasGun = true;
             Guns[Gun].SetActive(true);
-
-            //This is why I wanted the gun script to be used by both player and npc, so I dont have to do this ififfifif.
+            anim.SetBool("HasGun", true);
+            //This is why I wanted the gun script to be used by both player and npc using Unity event instead, so I dont have to do this ififfifif.
             if (Gun == 0)
             {
                 Ammo = 32;
@@ -103,9 +103,16 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
 
     private void Update()
     {
-        if (Dead())
+        if (Dead()) //Add to also check if day
         {
+            
             State = EnemyState.Dying;
+        }
+
+        if(Player.GetComponent<IDamage>() != null && Player.GetComponent<IDamage>().GetHealth() == 0)
+        {
+            anim.SetBool("PlayerIsDead", true);
+            State = EnemyState.Idle;
         }
 
         switch (State)
@@ -118,11 +125,14 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
                 {
                     State = EnemyState.Shoot;
                     agent.isStopped = true;
+                    anim.ResetTrigger("Moving");
+                    anim.SetTrigger("Shoot");
                     break;
                 }
 
                 if (Vector2DDist(this.transform.position, Player.transform.position) <= MeleeRange)
                 {
+                    anim.SetBool("IsAttacking", true);
                     State = EnemyState.Fight;
                     agent.isStopped = true;
                 }
@@ -145,7 +155,8 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
                         DPS = RDPS;
                         anim.ResetTrigger("Attack");
                         anim.SetTrigger("Moving");
-                        
+                        anim.SetBool("IsAttacking", false);
+
                         break;
                     }
                 }
@@ -171,6 +182,7 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
 
                 transform.rotation = Quaternion.LookRotation((Player.transform.position - transform.position).normalized);
 
+                
                 if (GDPS == RGDPS && Ammo != 0)
                 {
 
@@ -183,7 +195,7 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
                         State = EnemyState.Seeking;
                         agent.isStopped = false;
                         GDPS = RGDPS;
-
+                        anim.ResetTrigger("Shoot");
                         anim.SetTrigger("Moving");
                         break;
                     }
@@ -195,6 +207,9 @@ public class EnemyAI : PlayerEnemy, IEnemySetup
                     State = EnemyState.Seeking;
                     agent.isStopped = false;
                     Guns[Gun].SetActive(false);
+                    anim.ResetTrigger("Shoot");
+                    anim.SetBool("HasGun", false);
+
                     //AND MAKE IT SPAWN THE GUN HERE
                     break;
                 }
