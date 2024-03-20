@@ -794,7 +794,7 @@ MonoBehaviour:
   DPS: 1
   MeleeRange: 4
   ShootingRange: 64.2
-  Speed: 3.5
+  Speed: 8
   Guns:
   - {fileID: 6178661891759604814}
   - {fileID: 1421072479534803678}

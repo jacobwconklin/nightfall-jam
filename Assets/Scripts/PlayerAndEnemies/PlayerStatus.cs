@@ -21,6 +21,7 @@ public class PlayerStatus : PlayerEnemy
         gameController = GameController.GameControllerInstance;
         charge = 50;
         chargeDisplay.setCharge(charge);
+        healthDisplay.spenthealth(100);
     }
 
     // Inherits from PlayerEnemy abstract class, handles tracking player's charge and health.

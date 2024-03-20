@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DefaultHomeScreen.unity
     guid: e3131f252c2d7ac43a853d472a37cdc3
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Playground.unity
     guid: 9abcc4ed5304e1b438494ac9da965b2d
+  - enabled: 1
+    path: Assets/Scenes/FullTest 1.unity
+    guid: 1cd6c500aa83522448c0d1c8b006016b
   - enabled: 1
     path: Assets/Scenes/FullTest.unity
     guid: fc663c5660967034a8d3350da2288993
@@ -20,7 +23,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/UIScene.unity
     guid: 01d088673dc66684e9a234014fd6762c
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 9f57ffd0ec31ea54fbcd8950c1daa1ee
   m_configObjects: {}
